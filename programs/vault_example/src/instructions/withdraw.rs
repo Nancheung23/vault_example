@@ -33,7 +33,7 @@ pub fn withdraw_handler(ctx: Context<Withdraw>, amount: u64) -> Result<()> {
     msg!("Withdraw from: {:?}", ctx.accounts.vault.key());
     let user_key = ctx.accounts.user.key();
     let seeds = &[b"vault", user_key.as_ref(), &[ctx.bumps.vault]];
-    let signer_seeds = &[(&seeds[..])];
+    let signer_seeds = &[&seeds[..]];
 
     // create program
     let cpi_program = ctx.accounts.system_program.to_account_info();
